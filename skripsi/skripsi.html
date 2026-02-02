@@ -48,6 +48,30 @@
 </div>
 
 <script>
+const hargaBab = {
+    "BAB I": 350000,
+    "BAB II": 500000,
+    "BAB III": 300000,
+    "BAB IV": 600000,
+    "BAB V": 250000
+};
+
+// Update harga saat checkbox diklik
+document.querySelectorAll('input[name="bab"]').forEach(cb => {
+    cb.addEventListener("change", updateHarga);
+});
+
+function updateHarga() {
+    let total = 0;
+
+    document.querySelectorAll('input[name="bab"]:checked').forEach(item => {
+        total += hargaBab[item.value];
+    });
+
+    document.getElementById("harga").value =
+        total > 0 ? "Rp " + total.toLocaleString("id-ID") : "Rp 0";
+}
+
 function beliSekarang() {
     const nama = document.getElementById("nama").value.trim();
     const nirm = document.getElementById("nirm").value.trim();
@@ -62,10 +86,12 @@ function beliSekarang() {
         return;
     }
 
-    // Ambil BAB yang dicentang
     const babChecked = [];
+    let hargaAwal = 0;
+
     document.querySelectorAll('input[name="bab"]:checked').forEach(item => {
         babChecked.push(item.value);
+        hargaAwal += hargaBab[item.value];
     });
 
     if (babChecked.length === 0) {
@@ -73,20 +99,14 @@ function beliSekarang() {
         return;
     }
 
-    let hargaAwal = 5000000;
     let diskon = 0;
-
     const voucher5 = ["HEMAT5A","HEMAT5B","HEMAT5C","HEMAT5D","HEMAT5E"];
     const voucher10 = ["HEMAT10A","HEMAT10B","HEMAT10C","HEMAT10D","HEMAT10E"];
     const voucher15 = ["HEMAT15A","HEMAT15B","HEMAT15C","HEMAT15D","HEMAT15E"];
 
-    if (voucher5.includes(voucherInput)) {
-        diskon = 5;
-    } else if (voucher10.includes(voucherInput)) {
-        diskon = 10;
-    } else if (voucher15.includes(voucherInput)) {
-        diskon = 15;
-    }
+    if (voucher5.includes(voucherInput)) diskon = 5;
+    else if (voucher10.includes(voucherInput)) diskon = 10;
+    else if (voucher15.includes(voucherInput)) diskon = 15;
 
     const potongan = hargaAwal * diskon / 100;
     const hargaAkhir = hargaAwal - potongan;
