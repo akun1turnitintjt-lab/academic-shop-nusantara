@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Joki Makalah</title>
+    <title>Joki Artikel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
@@ -11,12 +11,12 @@
 <body>
 
 <div class="form-container">
-    <h2>📄 Joki Makalah</h2>
+    <h2>📄 Joki Artikel</h2>
 
     <label>Nama *</label>
     <input type="text" id="nama">
 
-    <label>NIRM *</label>
+    <label>Email *</label>
     <input type="text" id="nirm">
 
     <label>Program Studi *</label>
@@ -28,11 +28,11 @@
     <label>Nama Kampus *</label>
     <input type="text" id="kampus">
 
-    <label>Judul Makalah <small>(Opsional)</small></label>
+    <label>Judul Artikel <small>(Opsional)</small></label>
     <input type="text" id="judul">
 
-    <label>Harga Makalah</label>
-    <input type="text" id="harga" value="Rp 100.000" readonly>
+    <label>Harga Artikel</label>
+    <input type="text" id="harga" value="Rp 150.000" readonly>
 
     <label>Kode Voucher <small>(Opsional)</small></label>
     <input type="text" id="voucher" placeholder="Contoh: HEMAT10A">
@@ -44,7 +44,7 @@
 <script>
 function beliSekarang() {
     const nama = document.getElementById("nama").value.trim();
-    const nirm = document.getElementById("nirm").value.trim();
+    const email = document.getElementById("email").value.trim();
     const prodi = document.getElementById("prodi").value.trim();
     const fakultas = document.getElementById("fakultas").value.trim();
     const kampus = document.getElementById("kampus").value.trim();
@@ -52,12 +52,12 @@ function beliSekarang() {
     const voucherInput = document.getElementById("voucher").value.trim().toUpperCase();
 
     // VALIDASI FORM WAJIB
-    if (!nama || !nirm || !prodi || !fakultas || !kampus) {
+    if (!nama || !email || !prodi || !fakultas || !kampus) {
         alert("⚠️ Mohon lengkapi semua data wajib terlebih dahulu.");
         return;
     }
 
-    let hargaAwal = 100000;
+    let hargaAwal = 150000;
     let diskon = 0;
 
     const voucher5 = ["HEMAT5A","HEMAT5B","HEMAT5C","HEMAT5D","HEMAT5E","HEMAT5F","HEMAT5G","HEMAT5H","HEMAT5I","HEMAT5J"];
@@ -79,11 +79,11 @@ function beliSekarang() {
 *JOKI MAKALAH*
 -----------------------
 Nama: ${nama}
-NIRM: ${nirm}
+Email: ${email}
 Program Studi: ${prodi}
 Fakultas: ${fakultas}
 Kampus: ${kampus}
-Judul Makalah: ${judul}
+Judul Artikel: ${judul}
 Voucher: ${voucherInput || "-"}
 Diskon: ${diskon}%
 Total Bayar: Rp ${hargaAkhir.toLocaleString("id-ID")}
