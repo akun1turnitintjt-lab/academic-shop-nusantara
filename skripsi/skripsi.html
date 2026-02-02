@@ -4,41 +4,46 @@
     <meta charset="UTF-8">
     <title>Joki Skripsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="skripsi.css">
 </head>
 <body>
 
 <div class="form-container">
-    <h2>📄 Skripsi</h2>
+    <h2>📄 Joki Skripsi</h2>
 
-    <label>Nama *</label>
-    <input type="text" id="nama">
+    <label>Nama *</label><br>
+    <input type="text" id="nama"><br><br>
 
-    <label>NIRM *</label>
-    <input type="text" id="nirm">
+    <label>NIRM *</label><br>
+    <input type="text" id="nirm"><br><br>
 
-    <label>Program Studi *</label>
-    <input type="text" id="prodi">
+    <label>Program Studi *</label><br>
+    <input type="text" id="prodi"><br><br>
 
-    <label>Fakultas *</label>
-    <input type="text" id="fakultas">
+    <label>Fakultas *</label><br>
+    <input type="text" id="fakultas"><br><br>
 
-    <label>Nama Kampus *</label>
-    <input type="text" id="kampus">
+    <label>Nama Kampus *</label><br>
+    <input type="text" id="kampus"><br><br>
 
-    <label>Judul Skripsi <small>(Opsional)</small></label>
-    <input type="text" id="judul">
+    <!-- CHECKBOX BAB -->
+    <label>Bagian Skripsi yang Dikerjakan *</label><br>
+    <label><input type="checkbox" name="bab" value="BAB I"> BAB I</label><br>
+    <label><input type="checkbox" name="bab" value="BAB II"> BAB II</label><br>
+    <label><input type="checkbox" name="bab" value="BAB III"> BAB III</label><br>
+    <label><input type="checkbox" name="bab" value="BAB IV"> BAB IV</label><br>
+    <label><input type="checkbox" name="bab" value="BAB V"> BAB V</label><br><br>
 
-    <label>Harga Skripsi</label>
-    <input type="text" id="harga" value="" readonly>
+    <label>Judul Skripsi <small>(Opsional)</small></label><br>
+    <input type="text" id="judul"><br><br>
 
-    <label>Kode Voucher <small>(Opsional)</small></label>
-    <input type="text" id="voucher" placeholder="Contoh: HEMAT10A">
-    <div class="note">*Masukkan kode voucher jika tersedia</div>
+    <label>Harga Skripsi</label><br>
+    <input type="text" id="harga" value="Rp 5.000.000" readonly><br><br>
 
-    <button class="btn" onclick="beliSekarang()">Beli Sekarang</button>
+    <label>Kode Voucher <small>(Opsional)</small></label><br>
+    <input type="text" id="voucher" placeholder="Contoh: HEMAT10A"><br>
+    <small>*Masukkan kode voucher jika tersedia</small><br><br>
+
+    <button onclick="beliSekarang()">Beli Sekarang</button>
 </div>
 
 <script>
@@ -51,18 +56,28 @@ function beliSekarang() {
     const judul = document.getElementById("judul").value.trim() || "-";
     const voucherInput = document.getElementById("voucher").value.trim().toUpperCase();
 
-    // VALIDASI FORM WAJIB
     if (!nama || !nirm || !prodi || !fakultas || !kampus) {
-        alert("⚠️ Mohon lengkapi semua data wajib terlebih dahulu.");
+        alert("⚠️ Mohon lengkapi semua data wajib.");
         return;
     }
 
-    let hargaAwal = ;
+    // Ambil BAB yang dicentang
+    const babChecked = [];
+    document.querySelectorAll('input[name="bab"]:checked').forEach(item => {
+        babChecked.push(item.value);
+    });
+
+    if (babChecked.length === 0) {
+        alert("⚠️ Pilih minimal satu BAB yang ingin dikerjakan.");
+        return;
+    }
+
+    let hargaAwal = 5000000;
     let diskon = 0;
 
-    const voucher5 = ["HEMAT5A","HEMAT5B","HEMAT5C","HEMAT5D","HEMAT5E","HEMAT5F","HEMAT5G","HEMAT5H","HEMAT5I","HEMAT5J"];
-    const voucher10 = ["HEMAT10A","HEMAT10B","HEMAT10C","HEMAT10D","HEMAT10E","HEMAT10F","HEMAT10G","HEMAT10H","HEMAT10I","HEMAT10J"];
-    const voucher15 = ["HEMAT15A","HEMAT15B","HEMAT15C","HEMAT15D","HEMAT15E","HEMAT15F","HEMAT15G","HEMAT15H","HEMAT15I","HEMAT15J"];
+    const voucher5 = ["HEMAT5A","HEMAT5B","HEMAT5C","HEMAT5D","HEMAT5E"];
+    const voucher10 = ["HEMAT10A","HEMAT10B","HEMAT10C","HEMAT10D","HEMAT10E"];
+    const voucher15 = ["HEMAT15A","HEMAT15B","HEMAT15C","HEMAT15D","HEMAT15E"];
 
     if (voucher5.includes(voucherInput)) {
         diskon = 5;
@@ -83,13 +98,14 @@ NIRM: ${nirm}
 Program Studi: ${prodi}
 Fakultas: ${fakultas}
 Kampus: ${kampus}
+Bagian Dikerjakan: ${babChecked.join(", ")}
 Judul Skripsi: ${judul}
 Voucher: ${voucherInput || "-"}
 Diskon: ${diskon}%
 Total Bayar: Rp ${hargaAkhir.toLocaleString("id-ID")}
 -----------------------
 Saya ingin lanjut pemesanan.
-    `;
+`;
 
     const nomorAdmin = "6288245742094";
     const url = "https://wa.me/" + nomorAdmin + "?text=" + encodeURIComponent(pesan);
