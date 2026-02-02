@@ -17,7 +17,7 @@
     <input type="text" id="nama">
 
     <label>Email *</label>
-    <input type="text" id="nirm">
+    <input type="email" id="email">
 
     <label>Program Studi *</label>
     <input type="text" id="prodi">
@@ -64,16 +64,11 @@ function beliSekarang() {
     const voucher10 = ["HEMAT10A","HEMAT10B","HEMAT10C","HEMAT10D","HEMAT10E","HEMAT10F","HEMAT10G","HEMAT10H","HEMAT10I","HEMAT10J"];
     const voucher15 = ["HEMAT15A","HEMAT15B","HEMAT15C","HEMAT15D","HEMAT15E","HEMAT15F","HEMAT15G","HEMAT15H","HEMAT15I","HEMAT15J"];
 
-    if (voucher5.includes(voucherInput)) {
-        diskon = 5;
-    } else if (voucher10.includes(voucherInput)) {
-        diskon = 10;
-    } else if (voucher15.includes(voucherInput)) {
-        diskon = 15;
-    }
+    if (voucher5.includes(voucherInput)) diskon = 5;
+    else if (voucher10.includes(voucherInput)) diskon = 10;
+    else if (voucher15.includes(voucherInput)) diskon = 15;
 
-    const potongan = hargaAwal * diskon / 100;
-    const hargaAkhir = hargaAwal - potongan;
+    const hargaAkhir = hargaAwal - (hargaAwal * diskon / 100);
 
     const pesan = `
 *JOKI ARTIKEL*
