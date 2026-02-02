@@ -118,38 +118,5 @@
 
   </div>
 </div>
-    <script>
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isMobile && !localStorage.getItem("desktopMode")) {
-    document.getElementById("desktopPrompt").style.display = "flex";
-  }
-
-  document.getElementById("yesDesktop").onclick = function () {
-    localStorage.setItem("desktopMode", "true");
-
-    // Paksa viewport desktop
-    let meta = document.querySelector('meta[name="viewport"]');
-    meta.setAttribute("content", "width=1200");
-
-    document.getElementById("desktopPrompt").style.display = "none";
-  };
-
-  document.getElementById("noDesktop").onclick = function () {
-    document.getElementById("desktopPrompt").style.display = "none";
-  };
-</script>
-
-  </body>
-  <!-- POPUP DESKTOP MODE -->
-<div id="desktopPrompt" class="desktop-prompt">
-  <div class="desktop-box">
-    <h4>Tampilan Desktop</h4>
-    <p>Website ini lebih nyaman dibuka dalam tampilan desktop.</p>
-    <div class="desktop-action">
-      <button id="yesDesktop">Ya, Ubah</button>
-      <button id="noDesktop">Nanti</button>
-    </div>
-  </div>
-</div>
+</body>
 </html> 
