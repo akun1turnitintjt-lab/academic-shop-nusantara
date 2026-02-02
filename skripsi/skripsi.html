@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Joki Makalah</title>
+    <title>Joki Skripsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
@@ -11,7 +11,7 @@
 <body>
 
 <div class="form-container">
-    <h2>📄 Joki Makalah</h2>
+    <h2>📄 Skripsi</h2>
 
     <label>Nama *</label>
     <input type="text" id="nama">
@@ -28,11 +28,11 @@
     <label>Nama Kampus *</label>
     <input type="text" id="kampus">
 
-    <label>Judul Makalah <small>(Opsional)</small></label>
+    <label>Judul Skripsi <small>(Opsional)</small></label>
     <input type="text" id="judul">
 
-    <label>Harga Makalah</label>
-    <input type="text" id="harga" value="Rp 100.000" readonly>
+    <label>Harga Skripsi</label>
+    <input type="text" id="harga" value="" readonly>
 
     <label>Kode Voucher <small>(Opsional)</small></label>
     <input type="text" id="voucher" placeholder="Contoh: HEMAT10A">
@@ -57,7 +57,7 @@ function beliSekarang() {
         return;
     }
 
-    let hargaAwal = 100000;
+    let hargaAwal = ;
     let diskon = 0;
 
     const voucher5 = ["HEMAT5A","HEMAT5B","HEMAT5C","HEMAT5D","HEMAT5E","HEMAT5F","HEMAT5G","HEMAT5H","HEMAT5I","HEMAT5J"];
@@ -76,14 +76,14 @@ function beliSekarang() {
     const hargaAkhir = hargaAwal - potongan;
 
     const pesan = `
-*JOKI MAKALAH*
+*JOKI SKRIPSI*
 -----------------------
 Nama: ${nama}
 NIRM: ${nirm}
 Program Studi: ${prodi}
 Fakultas: ${fakultas}
 Kampus: ${kampus}
-Judul Makalah: ${judul}
+Judul Skripsi: ${judul}
 Voucher: ${voucherInput || "-"}
 Diskon: ${diskon}%
 Total Bayar: Rp ${hargaAkhir.toLocaleString("id-ID")}
