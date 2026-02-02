@@ -198,15 +198,6 @@ a {
   .card-title {
     font-size: 14px;
   }
-/* Wrapper utama */
-.desktop-prompt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  background: #f5f5f5; /* background lembut */
-  min-height: 200px;
-}
 
 /* Kotak desktop */
 .desktop-box {
